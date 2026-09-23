@@ -45,7 +45,7 @@ const FEATURES: FeatureCard[] = [
     badge: 'Công cụ GDTC',
     description: 'Quy đổi điểm 3 học phần GDTC sang thang điểm 4.0 và kiểm tra điều kiện đạt chuẩn đầu ra nhanh chóng.',
     icon: Dumbbell,
-    href: '/diem-gdtc',
+    href: '/tinh-the-duc',
     btnText: 'Mở công cụ',
   },
   {
@@ -53,7 +53,7 @@ const FEATURES: FeatureCard[] = [
     badge: 'Thang điểm 4.0',
     description: 'Quản lý điểm số các môn học theo tín chỉ, tính toán chính xác điểm trung bình học kỳ và dự đoán xếp loại tốt nghiệp.',
     icon: Calculator,
-    href: '/tinh-diem',
+    href: '/tinh-gpa',
     btnText: 'Mở công cụ',
   },
   {
