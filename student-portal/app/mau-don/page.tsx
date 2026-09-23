@@ -20,6 +20,8 @@ interface FormItem {
 }
 
 const GOOGLE_SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/1g-QFr-NpacZPKTqTc2g5qfxa5lLQdHSqGCZWdbzVbwA/export?format=csv';
+const CACHE_KEY = 'cached_dtu_forms_v1';
+const CACHE_EXPIRE_TIME = 24 * 60 * 60 * 1000; // 24 tiếng (tính theo mili-giây)
 
 const DEFAULT_FORMS: FormItem[] = [
   {
@@ -178,7 +180,6 @@ const DEFAULT_FORMS: FormItem[] = [
   },
 ];
 
-// Bộ tách dòng CSV chuẩn tuyệt đối
 function parseCSVLine(line: string): string[] {
   const result: string[] = [];
   let cur = '';
@@ -263,6 +264,28 @@ export default function MauDonPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
+    // 1. Kiểm tra cache trong localStorage
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { timestamp, data } = JSON.parse(cached);
+        const isExpired = Date.now() - timestamp > CACHE_EXPIRE_TIME;
+
+        if (Array.isArray(data) && data.length > 0) {
+          setForms(data);
+          setIsLoading(false);
+
+          // Nếu cache còn hạn, không cần gửi request lên Google Sheet nữa
+          if (!isExpired) {
+            return;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Lỗi đọc cache localStorage:', e);
+    }
+
+    // 2. Tải dữ liệu mới nếu chưa có cache hoặc cache đã hết hạn
     fetch(GOOGLE_SHEET_CSV_URL)
       .then((res) => {
         if (!res.ok) throw new Error('Không thể tải file CSV');
@@ -272,6 +295,15 @@ export default function MauDonPage() {
         const parsed = parseCSV(csvText);
         if (parsed.length > 0) {
           setForms(parsed);
+          // Lưu vào localStorage
+          try {
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ timestamp: Date.now(), data: parsed })
+            );
+          } catch (e) {
+            console.warn('Không thể ghi cache vào localStorage:', e);
+          }
         }
       })
       .catch((err) => {
@@ -311,7 +343,7 @@ export default function MauDonPage() {
       
       <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/70 via-transparent to-black/5 z-0" />
 
-      {/* 1. TIÊU ĐỀ TRANG: SIZE VÀ ĐỘ ĐẬM CHUẨN XÁC THEO MẪU */}
+      {/* 1. TIÊU ĐỀ TRANG */}
       <div className="relative z-10 text-center space-y-3.5 pt-4 mb-9 max-w-3xl">
         <div>
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">

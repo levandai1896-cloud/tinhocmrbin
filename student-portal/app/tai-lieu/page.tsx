@@ -23,6 +23,8 @@ interface DocumentItem {
 
 // LINK LẤY DỮ LIỆU TAB "TaiLieu" TỪ GOOGLE SHEET
 const GOOGLE_SHEET_TAILIEU_URL = 'https://docs.google.com/spreadsheets/d/1g-QFr-NpacZPKTqTc2g5qfxa5lLQdHSqGCZWdbzVbwA/gviz/tq?tqx=out:csv&sheet=TaiLieu';
+const CACHE_KEY = 'cached_dtu_tailieu_v1';
+const CACHE_EXPIRE_TIME = 24 * 60 * 60 * 1000; // 24 tiếng (mili-giây)
 
 const DEFAULT_DOCS: DocumentItem[] = [
   {
@@ -148,6 +150,28 @@ export default function TaiLieuPage() {
   ];
 
   useEffect(() => {
+    // 1. Kiểm tra cache trong localStorage
+    try {
+      const cached = localStorage.getItem(CACHE_KEY);
+      if (cached) {
+        const { timestamp, data } = JSON.parse(cached);
+        const isExpired = Date.now() - timestamp > CACHE_EXPIRE_TIME;
+
+        if (Array.isArray(data) && data.length > 0) {
+          setDocuments(data);
+          setIsLoading(false);
+
+          // Nếu cache còn hạn, dừng lại không fetch nữa
+          if (!isExpired) {
+            return;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Lỗi đọc cache localStorage:', e);
+    }
+
+    // 2. Fetch dữ liệu mới từ Google Sheet nếu chưa có cache hoặc cache đã quá hạn
     fetch(GOOGLE_SHEET_TAILIEU_URL)
       .then((res) => {
         if (!res.ok) throw new Error('Không thể tải CSV từ Google Sheet');
@@ -157,6 +181,15 @@ export default function TaiLieuPage() {
         const parsed = parseCSV(csvText);
         if (parsed.length > 0) {
           setDocuments(parsed);
+          // Ghi nhớ vào localStorage
+          try {
+            localStorage.setItem(
+              CACHE_KEY,
+              JSON.stringify({ timestamp: Date.now(), data: parsed })
+            );
+          } catch (e) {
+            console.warn('Không thể ghi cache vào localStorage:', e);
+          }
         }
       })
       .catch((err) => {
