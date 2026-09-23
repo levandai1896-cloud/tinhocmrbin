@@ -271,7 +271,7 @@ export default function TinhDiemTheDucPage() {
                 {result.isPass ? (
                   <div className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-600 text-white font-bold text-xs uppercase tracking-wide rounded-xl shadow-sm">
                     <CheckCircle size={17} className="shrink-0 text-emerald-100" />
-                    <span>Chúc mừng: Đã đạt chứng chỉ thể chất</span>
+                    <span>Chúc mừng: bạn đã đạt</span>
                   </div>
                 ) : (
                   <div className="inline-flex items-center gap-2 px-5 py-3 bg-[#b23b35] text-white font-bold text-xs uppercase tracking-wide rounded-xl shadow-sm">
