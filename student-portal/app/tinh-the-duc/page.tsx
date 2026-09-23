@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Activity, CheckCircle, AlertCircle, RotateCcw, ArrowRight } from 'lucide-react';
+import { Activity, CheckCircle2, AlertCircle, RotateCcw, ArrowRight } from 'lucide-react';
 
 function convertScore(s: number): { score4: number; grade: string } {
   if (s >= 9.5) return { score4: 4.0, grade: 'A+' };
@@ -86,57 +86,56 @@ export default function TinhDiemTheDucPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center pt-8 pb-16 px-4 bg-[#edeef2] text-neutral-900 font-sans relative selection:bg-[#b23b35] selection:text-white">
+    <div 
+      className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] antialiased selection:bg-[#0071e3] selection:text-white pb-24"
+      style={{
+        fontFamily: "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        letterSpacing: '-0.011em',
+      }}
+    >
       
-      {/* Nền nhám mờ SVG */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-45 mix-blend-multiply z-0"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat'
-        }}
-      />
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/70 via-transparent to-black/5 z-0" />
-
-      {/* 1. TIÊU ĐỀ TRANG: FONT MỀM MẠI, GỌN GÀNG */}
-      <div className="relative z-10 text-center space-y-3.5 pt-4 mb-9 max-w-2xl">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
-            <Activity size={14} className="text-red-100" />
-            <span>Công cụ quy đổi chuẩn đầu ra DTU</span>
+      {/* 1. TIÊU ĐỀ TRANG (TIÊU ĐỀ ĐÃ ĐỔI VỀ LẠI MÀU ĐEN TEXT-[#1D1D1F]) */}
+      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+        <div className="space-y-3 text-center max-w-2xl">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#ff7a00] text-white text-xs font-semibold rounded-full shadow-[0_2px_8px_rgba(255,122,0,0.3)]">
+              <Activity size={15} className="text-orange-100" />
+              <span>Công cụ quy đổi chuẩn đầu ra DTU</span>
+            </div>
           </div>
+
+          {/* Tiêu đề màu đen chuẩn Apple */}
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1d1d1f] leading-tight">
+            Tính Điểm Thể Dục <span className="text-[#86868b] font-medium"></span>
+          </h1>
+
+          <p className="text-[17px] leading-[25px] font-normal text-[#86868b] max-w-xl mx-auto">
+            Nhập điểm tổng kết của 3 học phần thể dục để kiểm tra điều kiện đạt chuẩn chứng chỉ thể chất. Lưu ý: Điểm trung bình hệ 4.0 phải từ 2.0 mới đạt.
+          </p>
         </div>
-
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight uppercase">
-          TÍNH ĐIỂM THỂ DỤC <span className="text-[#b23b35]">(HỆ 4.0)</span>
-        </h1>
-
-        <p className="text-neutral-600 text-xs sm:text-sm font-normal tracking-wide">
-          Nhập điểm tổng kết hệ 10 của 3 học phần GDTC để kiểm tra điều kiện đạt chuẩn tốt nghiệp
-        </p>
-      </div>
+      </section>
 
       {/* 2. KHUNG CARD CHÍNH */}
-      <div className="relative z-10 w-full max-w-3xl bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl p-6 sm:p-9 shadow-xl shadow-neutral-900/5 space-y-7">
-        
-        {/* Thông báo lỗi */}
-        {error && (
-          <div className="p-4 bg-red-50/80 border border-red-200 text-[#b23b35] text-xs sm:text-sm rounded-2xl flex items-center gap-2.5 font-medium">
-            <AlertCircle size={18} className="shrink-0 text-[#b23b35]" />
-            <span>{error}</span>
-          </div>
-        )}
+      <section className="w-full max-w-3xl mx-auto px-4 sm:px-6">
+        <div className="bg-white rounded-[28px] p-6 sm:p-9 border border-[#e5e5ea]/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] space-y-6">
+          
+          {/* Thông báo lỗi */}
+          {error && (
+            <div className="p-4 bg-red-50 border border-red-200/80 text-[#b23b35] text-sm rounded-2xl flex items-center gap-2.5 font-medium">
+              <AlertCircle size={18} className="shrink-0 text-[#b23b35]" />
+              <span>{error}</span>
+            </div>
+          )}
 
-        {/* Form nhập liệu */}
-        <form onSubmit={handleCalculate} className="space-y-7">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
-            
-            {/* Môn 1 */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold tracking-normal text-neutral-700 uppercase text-center">
-                MÔN THỂ DỤC 1
-              </label>
-              <div className="relative">
+          {/* Form nhập liệu */}
+          <form onSubmit={handleCalculate} className="space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5">
+              
+              {/* Môn 1 */}
+              <div className="space-y-2 text-center">
+                <label className="block text-[14px] sm:text-[15px] font-bold tracking-tight text-[#1d1d1f]">
+                  Điểm Môn Thể Dục 1
+                </label>
                 <input
                   type="number"
                   step="0.1"
@@ -147,17 +146,15 @@ export default function TinhDiemTheDucPage() {
                   value={score1}
                   onChange={(e) => setScore1(e.target.value)}
                   required
-                  className="w-full bg-neutral-50/60 hover:bg-neutral-50 focus:bg-white border border-neutral-300 hover:border-neutral-400 focus:border-[#b23b35] focus:ring-4 focus:ring-[#b23b35]/10 rounded-2xl px-4 py-3.5 text-neutral-900 text-center text-2xl font-bold tracking-tight focus:outline-none transition placeholder:text-neutral-300 shadow-inner"
+                  className="w-full bg-[#f5f5f7] focus:bg-white border border-[#e5e5ea] focus:border-[#0071e3] focus:ring-4 focus:ring-[#0071e3]/10 rounded-2xl px-4 py-3.5 text-[#1d1d1f] text-center text-2xl font-bold tracking-tight focus:outline-none transition shadow-sm placeholder:text-[#c7c7cc]"
                 />
               </div>
-            </div>
 
-            {/* Môn 2 */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold tracking-normal text-neutral-700 uppercase text-center">
-                MÔN THỂ DỤC 2
-              </label>
-              <div className="relative">
+              {/* Môn 2 */}
+              <div className="space-y-2 text-center">
+                <label className="block text-[14px] sm:text-[15px] font-bold tracking-tight text-[#1d1d1f]">
+                  Điểm Môn Thể Dục 2
+                </label>
                 <input
                   type="number"
                   step="0.1"
@@ -168,17 +165,15 @@ export default function TinhDiemTheDucPage() {
                   value={score2}
                   onChange={(e) => setScore2(e.target.value)}
                   required
-                  className="w-full bg-neutral-50/60 hover:bg-neutral-50 focus:bg-white border border-neutral-300 hover:border-neutral-400 focus:border-[#b23b35] focus:ring-4 focus:ring-[#b23b35]/10 rounded-2xl px-4 py-3.5 text-neutral-900 text-center text-2xl font-bold tracking-tight focus:outline-none transition placeholder:text-neutral-300 shadow-inner"
+                  className="w-full bg-[#f5f5f7] focus:bg-white border border-[#e5e5ea] focus:border-[#0071e3] focus:ring-4 focus:ring-[#0071e3]/10 rounded-2xl px-4 py-3.5 text-[#1d1d1f] text-center text-2xl font-bold tracking-tight focus:outline-none transition shadow-sm placeholder:text-[#c7c7cc]"
                 />
               </div>
-            </div>
 
-            {/* Môn 3 */}
-            <div className="space-y-2">
-              <label className="block text-xs font-bold tracking-normal text-neutral-700 uppercase text-center">
-                MÔN THỂ DỤC 3
-              </label>
-              <div className="relative">
+              {/* Môn 3 */}
+              <div className="space-y-2 text-center">
+                <label className="block text-[14px] sm:text-[15px] font-bold tracking-tight text-[#1d1d1f]">
+                  Điểm Môn Thể Dục 3
+                </label>
                 <input
                   type="number"
                   step="0.1"
@@ -189,103 +184,102 @@ export default function TinhDiemTheDucPage() {
                   value={score3}
                   onChange={(e) => setScore3(e.target.value)}
                   required
-                  className="w-full bg-neutral-50/60 hover:bg-neutral-50 focus:bg-white border border-neutral-300 hover:border-neutral-400 focus:border-[#b23b35] focus:ring-4 focus:ring-[#b23b35]/10 rounded-2xl px-4 py-3.5 text-neutral-900 text-center text-2xl font-bold tracking-tight focus:outline-none transition placeholder:text-neutral-300 shadow-inner"
+                  className="w-full bg-[#f5f5f7] focus:bg-white border border-[#e5e5ea] focus:border-[#0071e3] focus:ring-4 focus:ring-[#0071e3]/10 rounded-2xl px-4 py-3.5 text-[#1d1d1f] text-center text-2xl font-bold tracking-tight focus:outline-none transition shadow-sm placeholder:text-[#c7c7cc]"
                 />
               </div>
+
             </div>
 
-          </div>
+            {/* Hàng nút bấm */}
+            <div className="flex flex-col sm:flex-row items-center gap-3 pt-2">
+              <button
+                type="submit"
+                className="w-full sm:flex-1 bg-[#0071e3] hover:bg-[#0077ed] text-white font-bold py-3.5 px-6 rounded-2xl text-sm sm:text-base transition-all duration-200 shadow-[0_4px_14px_rgba(0,113,227,0.3)] hover:shadow-[0_6px_20px_rgba(0,113,227,0.4)] hover:scale-[1.01] flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Tính Kết Quả Ngay</span>
+                <ArrowRight size={17} />
+              </button>
+              <button
+                type="button"
+                onClick={handleReset}
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#f5f5f7] hover:bg-[#e5e5ea] border border-[#e5e5ea] text-[#1d1d1f] font-semibold py-3.5 px-6 rounded-2xl text-sm sm:text-base transition duration-200 cursor-pointer"
+              >
+                <RotateCcw size={16} />
+                <span>Nhập lại</span>
+              </button>
+            </div>
+          </form>
 
-          {/* Hàng nút bấm */}
-          <div className="flex flex-col sm:flex-row items-center gap-3 pt-1">
-            <button
-              type="submit"
-              className="w-full sm:flex-1 bg-[#b23b35] hover:bg-[#9b302a] active:scale-[0.99] text-white font-bold py-3.5 px-6 rounded-2xl uppercase tracking-normal text-xs sm:text-sm transition duration-200 shadow-md shadow-red-900/20 flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Tính Kết Quả Ngay</span>
-              <ArrowRight size={16} />
-            </button>
-            <button
-              type="button"
-              onClick={handleReset}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-neutral-100 hover:bg-neutral-200 active:scale-[0.99] border border-neutral-200 text-neutral-700 font-semibold py-3.5 px-5 rounded-2xl uppercase tracking-normal text-xs sm:text-sm transition duration-200 cursor-pointer"
-            >
-              <RotateCcw size={15} />
-              <span>Nhập lại</span>
-            </button>
-          </div>
-        </form>
-
-        {/* 3. KHỐI HIỂN THỊ KẾT QUẢ */}
-        {result && (
-          <div className="space-y-5 pt-4 border-t border-neutral-200/90 animate-in fade-in-50 duration-300">
-            
-            {/* Chi tiết 3 môn */}
-            <div className="border border-neutral-200/90 p-5 bg-neutral-50/70 rounded-2xl space-y-3.5">
-              <h3 className="text-xs font-bold text-neutral-500 uppercase tracking-wide text-center">
-                Chi tiết điểm quy đổi sang hệ 4.0
-              </h3>
+          {/* 3. KHỐI HIỂN THỊ KẾT QUẢ */}
+          {result && (
+            <div className="space-y-6 pt-5 border-t border-[#f5f5f7] animate-in fade-in duration-300">
               
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                <div className="bg-white border border-neutral-200 p-4 rounded-2xl text-center shadow-sm">
-                  <span className="text-[11px] text-neutral-500 font-medium uppercase block">
-                    Môn TD 1 ({result.m1_grade})
-                  </span>
-                  <span className="text-2xl font-bold text-neutral-900 mt-1 block tracking-tight">
-                    {result.m1_4.toFixed(2)}
-                  </span>
-                </div>
+              {/* Chi tiết 3 môn */}
+              <div className="border border-[#e5e5ea]/80 p-5 bg-[#f5f5f7] rounded-2xl space-y-3">
+                <h3 className="text-[13px] font-bold text-[#1d1d1f] uppercase tracking-wider text-center">
+                  Chi tiết điểm quy đổi sang hệ 4.0
+                </h3>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="bg-white border border-[#e5e5ea]/80 p-4 rounded-2xl text-center shadow-sm">
+                    <span className="text-[13px] text-[#1d1d1f] font-bold uppercase block">
+                      Môn TD 1 ({result.m1_grade})
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] mt-1 block tracking-tight">
+                      {result.m1_4.toFixed(2)}
+                    </span>
+                  </div>
 
-                <div className="bg-white border border-neutral-200 p-4 rounded-2xl text-center shadow-sm">
-                  <span className="text-[11px] text-neutral-500 font-medium uppercase block">
-                    Môn TD 2 ({result.m2_grade})
-                  </span>
-                  <span className="text-2xl font-bold text-neutral-900 mt-1 block tracking-tight">
-                    {result.m2_4.toFixed(2)}
-                  </span>
-                </div>
+                  <div className="bg-white border border-[#e5e5ea]/80 p-4 rounded-2xl text-center shadow-sm">
+                    <span className="text-[13px] text-[#1d1d1f] font-bold uppercase block">
+                      Môn TD 2 ({result.m2_grade})
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] mt-1 block tracking-tight">
+                      {result.m2_4.toFixed(2)}
+                    </span>
+                  </div>
 
-                <div className="bg-white border border-neutral-200 p-4 rounded-2xl text-center shadow-sm">
-                  <span className="text-[11px] text-neutral-500 font-medium uppercase block">
-                    Môn TD 3 ({result.m3_grade})
-                  </span>
-                  <span className="text-2xl font-bold text-neutral-900 mt-1 block tracking-tight">
-                    {result.m3_4.toFixed(2)}
-                  </span>
+                  <div className="bg-white border border-[#e5e5ea]/80 p-4 rounded-2xl text-center shadow-sm">
+                    <span className="text-[13px] text-[#1d1d1f] font-bold uppercase block">
+                      Môn TD 3 ({result.m3_grade})
+                    </span>
+                    <span className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] mt-1 block tracking-tight">
+                      {result.m3_4.toFixed(2)}
+                    </span>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Điểm trung bình cộng & Thẻ trạng thái */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-5 p-5 bg-neutral-100/80 border border-neutral-200 rounded-2xl">
-              <div className="text-center sm:text-left space-y-1">
-                <span className="text-xs font-bold text-[#b23b35] uppercase block tracking-wide">
-                  ĐIỂM TRUNG BÌNH GDTC HỆ 4.0
+              {/* Điểm trung bình cộng & Thẻ trạng thái */}
+              <div className="flex flex-col items-center justify-center text-center p-7 bg-[#f5f5f7] border border-[#e5e5ea]/80 rounded-[24px] space-y-3.5">
+                <span className="text-[15px] sm:text-[17px] font-bold text-[#1d1d1f] uppercase tracking-wider block">
+                  Điểm trung bình GDTC hệ 4.0
                 </span>
-                <span className="text-4xl sm:text-5xl font-extrabold text-neutral-900 block tracking-tight">
+                
+                <span className="text-5xl sm:text-6xl font-extrabold text-[#1d1d1f] tracking-tight leading-none">
                   {result.avg}
                 </span>
+
+                <div className="pt-2">
+                  {result.isPass ? (
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-emerald-600 text-white font-bold text-sm sm:text-[15px] uppercase tracking-wide rounded-full shadow-sm">
+                      <CheckCircle2 size={20} className="shrink-0 text-emerald-100" />
+                      <span>Chúc mừng: bạn đã đạt chứng chỉ thể chất</span>
+                    </div>
+                  ) : (
+                    <div className="inline-flex items-center gap-2 px-6 py-3 bg-[#b23b35] text-white font-bold text-sm sm:text-[15px] uppercase tracking-wide rounded-full shadow-sm">
+                      <AlertCircle size={20} className="shrink-0 text-red-100" />
+                      <span>Rất tiếc bạn chưa đạt: Thiếu {result.deficit} điểm (Cần &ge; 2.0)</span>
+                    </div>
+                  )}
+                </div>
               </div>
 
-              <div>
-                {result.isPass ? (
-                  <div className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-600 text-white font-bold text-xs uppercase tracking-wide rounded-xl shadow-sm">
-                    <CheckCircle size={17} className="shrink-0 text-emerald-100" />
-                    <span>Chúc mừng: bạn đã đạt</span>
-                  </div>
-                ) : (
-                  <div className="inline-flex items-center gap-2 px-5 py-3 bg-[#b23b35] text-white font-bold text-xs uppercase tracking-wide rounded-xl shadow-sm">
-                    <AlertCircle size={17} className="shrink-0 text-red-100" />
-                    <span>Chưa đạt: Thiếu {result.deficit} điểm (Cần &ge; 2.0)</span>
-                  </div>
-                )}
-              </div>
             </div>
+          )}
 
-          </div>
-        )}
-
-      </div>
+        </div>
+      </section>
 
     </div>
   );

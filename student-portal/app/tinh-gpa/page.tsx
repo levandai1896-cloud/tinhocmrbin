@@ -69,7 +69,7 @@ function GpaParabolArc({ gpa }: { gpa: number }) {
           <path
             d={`M ${cx - r} ${cy} A ${r} ${r} 0 0 1 ${cx + r} ${cy}`}
             fill="none"
-            stroke="#e5e7eb"
+            stroke="#e5e5ea"
             strokeWidth="12"
             strokeLinecap="round"
           />
@@ -97,17 +97,17 @@ function GpaParabolArc({ gpa }: { gpa: number }) {
             />
           )}
 
-          <text x={cx - r - 10} y={cy + 15} fill="#9ca3af" fontSize="10" fontWeight="bold" textAnchor="middle">0.0</text>
-          <text x={cx} y={cy - r - 8} fill="#9ca3af" fontSize="10" fontWeight="bold" textAnchor="middle">2.0</text>
-          <text x={cx + r + 10} y={cy + 15} fill="#9ca3af" fontSize="10" fontWeight="bold" textAnchor="middle">4.0</text>
+          <text x={cx - r - 10} y={cy + 15} fill="#86868b" fontSize="11" fontWeight="600" textAnchor="middle">0.0</text>
+          <text x={cx} y={cy - r - 8} fill="#86868b" fontSize="11" fontWeight="600" textAnchor="middle">2.0</text>
+          <text x={cx + r + 10} y={cy + 15} fill="#86868b" fontSize="11" fontWeight="600" textAnchor="middle">4.0</text>
         </svg>
 
         <div className="absolute bottom-0 flex flex-col items-center">
           <div className="flex items-baseline gap-1">
-            <span className="text-3xl sm:text-4xl font-extrabold text-neutral-900 tracking-tight">
+            <span className="text-3xl sm:text-4xl font-extrabold text-[#1d1d1f] tracking-tight">
               {clampedGpa.toFixed(2)}
             </span>
-            <span className="text-xs font-semibold text-neutral-500">/ 4.0</span>
+            <span className="text-xs font-semibold text-[#86868b]">/ 4.0</span>
           </div>
         </div>
       </div>
@@ -161,23 +161,23 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
     : '';
 
   return (
-    <div className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl p-6 sm:p-7 shadow-xl shadow-neutral-900/5 space-y-4">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-neutral-200 pb-4">
-        <div className="flex items-center gap-2.5">
-          <div className="w-8 h-8 rounded-xl bg-red-50 text-[#b23b35] border border-red-200 flex items-center justify-center">
-            <TrendingUp size={16} />
+    <div className="bg-white rounded-[26px] p-6 sm:p-7 border border-[#e5e5ea]/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] space-y-4">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-[#f5f5f7] pb-4">
+        <div className="flex items-center gap-3">
+          <div className="w-9 h-9 rounded-xl bg-neutral-100 text-[#1d1d1f] border border-[#e5e5ea] flex items-center justify-center">
+            <TrendingUp size={18} />
           </div>
           <div>
-            <h3 className="text-base font-bold text-neutral-900 tracking-wide">
-              ĐỒ THỊ BIẾN THIÊN GPA THEO HỌC KỲ
+            <h3 className="text-base sm:text-[22px] font-bold text-[#1d1d1f] tracking-tight">
+              Đồ thị biến thiên theo học kỳ
             </h3>
-            <p className="text-xs text-neutral-500 font-normal">
+            <p className="text-s text-[#86868b] font-normal">
               Theo dõi sự tăng trưởng và phong độ học tập qua từng kỳ học
             </p>
           </div>
         </div>
 
-        <div className="flex items-center gap-3 text-[11px] text-neutral-500 font-medium">
+        <div className="flex items-center gap-3 text-s text-[#515154] font-medium">
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 inline-block"></span> Tăng điểm
           </span>
@@ -192,8 +192,8 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
           <svg viewBox={`0 0 ${width} ${height}`} className="w-full h-auto overflow-visible">
             <defs>
               <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#b23b35" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#b23b35" stopOpacity="0.0" />
+                <stop offset="0%" stopColor="#1d1d1f" stopOpacity="0.08" />
+                <stop offset="100%" stopColor="#1d1d1f" stopOpacity="0.0" />
               </linearGradient>
               <linearGradient id="curveLineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#b23b35" />
@@ -211,16 +211,16 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
                     y1={y}
                     x2={width - paddingX + 10}
                     y2={y}
-                    stroke="#e5e7eb"
+                    stroke="#e5e5ea"
                     strokeDasharray="4 4"
                     strokeWidth="1"
                   />
                   <text
                     x={paddingX - 18}
                     y={y + 4}
-                    fill="#9ca3af"
-                    fontSize="10"
-                    fontWeight="bold"
+                    fill="#86868b"
+                    fontSize="11"
+                    fontWeight="600"
                     textAnchor="end"
                   >
                     {gpaVal.toFixed(1)}
@@ -257,7 +257,7 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
                     y1={pt.y}
                     x2={pt.x}
                     y2={height - paddingBottom}
-                    stroke="#e5e7eb"
+                    stroke="#e5e5ea"
                     strokeWidth="1"
                   />
 
@@ -274,8 +274,8 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
                   <text
                     x={pt.x}
                     y={height - paddingBottom + 20}
-                    fill="#4b5563"
-                    fontSize="11"
+                    fill="#515154"
+                    fontSize="12"
                     fontWeight="600"
                     textAnchor="middle"
                   >
@@ -285,8 +285,8 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
                   <text
                     x={pt.x}
                     y={pt.y - 12}
-                    fill="#111827"
-                    fontSize="12"
+                    fill="#1d1d1f"
+                    fontSize="13"
                     fontWeight="bold"
                     textAnchor="middle"
                   >
@@ -307,15 +307,15 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
           return (
             <div
               key={idx}
-              className="p-3 rounded-2xl bg-neutral-50 border border-neutral-200 flex items-center justify-between"
+              className="p-3.5 rounded-2xl bg-[#f5f5f7] border border-[#e5e5ea] flex items-center justify-between"
             >
               <div>
-                <span className="text-[11px] text-neutral-500 font-semibold block">{pt.semName}</span>
-                <span className="text-base font-bold text-neutral-900">{pt.gpa.toFixed(2)}</span>
+                <span className="text-xs text-[#86868b] font-semibold block">{pt.semName}</span>
+                <span className="text-base font-bold text-[#1d1d1f]">{pt.gpa.toFixed(2)}</span>
               </div>
 
               {diff === null ? (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-200 text-neutral-600 flex items-center gap-1">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#e5e5ea] text-[#515154] flex items-center gap-1">
                   <Minus size={11} /> Khởi đầu
                 </span>
               ) : diff > 0 ? (
@@ -327,7 +327,7 @@ function GpaTrendChart({ data }: { data: SemesterTrendItem[] }) {
                   <TrendingDown size={12} /> {diff.toFixed(2)}
                 </span>
               ) : (
-                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-neutral-200 text-neutral-600 flex items-center gap-1">
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#e5e5ea] text-[#515154] flex items-center gap-1">
                   <Minus size={11} /> 0.00
                 </span>
               )}
@@ -485,67 +485,65 @@ export default function TinhGPAPage() {
   const classification = getClassification(cumulativeGPA);
 
   return (
-    <div className="min-h-screen flex flex-col items-center pt-8 pb-20 px-4 bg-[#edeef2] text-neutral-900 font-sans relative selection:bg-[#b23b35] selection:text-white">
+    <div 
+      className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] antialiased selection:bg-[#0071e3] selection:text-white pb-24"
+      style={{
+        fontFamily: "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        letterSpacing: '-0.011em',
+      }}
+    >
       
-      {/* NỀN NHÁM MỜ SVG */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-45 mix-blend-multiply z-0"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat'
-        }}
-      />
-      
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/70 via-transparent to-black/5 z-0" />
-
-      {/* 1. Header */}
-      <div className="relative z-10 text-center space-y-3.5 pt-4 mb-9 max-w-3xl">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
-            <Calculator size={14} className="text-red-100" />
-            <span>Tiện ích sinh viên</span>
+      {/* 1. HEADER CĂN GIỮA STYLE APPLE (HUY HIỆU ĐÃ ĐỔI THÀNH NỀN ĐEN CHỮ TRẮNG) */}
+      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+        <div className="space-y-3 text-center max-w-3xl">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1d1d1f] text-white text-xs font-semibold rounded-full shadow-sm">
+              <Calculator size={15} className="text-neutral-300" />
+              <span>Tiện ích cho sinh viên DTU</span>
+            </div>
           </div>
+
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1d1d1f] leading-tight">
+            Tính Điểm <span className="text-[#1d1d1f] font-extrabold">GPA Tích Luỹ</span>
+          </h1>
+
+          <p className="text-[17px] leading-[25px] font-normal text-[#86868b] max-w-2xl mx-auto">
+            Nhập điểm kết thúc học phần và số tín chỉ để tính GPA — mô phỏng điểm số khi học lại, học cải thiện giúp bạn định hướng lộ trình tốt nghiệp chuẩn xác.
+          </p>
         </div>
+      </section>
 
-        <h1 className="text-3xl sm:text-4xl font-black tracking-normal">
-          TÍNH ĐIỂM <span className="text-[#b23b35]">GPA TÍCH LŨY</span>
-        </h1>
-
-        <p className="text-neutral-600 text-xs sm:text-sm font-normal tracking-wide max-w-xl mx-auto">
-          Nhập điểm hệ tổng và số tín chỉ để tính GPA - Dùng để mô phỏng điểm GPA khi học lại - học cải thiện, giúp nắm bắt điểm chính xác cho sinh viên
-        </p>
-      </div>
-
-      <div className="relative z-10 w-full max-w-4xl space-y-6">
-        {/* 2. Danh sách các học kỳ */}
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
+        
+        {/* 2. DANH SÁCH CÁC HỌC KỲ */}
         {semesters.map((sem, sIdx) => {
           const { semCredits, gpa: semGPA } = calculateSemesterStats(sem.courses);
 
           return (
             <div
               key={sem.id}
-              className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl p-5 sm:p-7 shadow-xl shadow-neutral-900/5 space-y-5"
+              className="bg-white rounded-[26px] p-5 sm:p-7 border border-[#e5e5ea]/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] space-y-5"
             >
-              <div className="flex items-center justify-between border-b border-neutral-200 pb-4">
+              <div className="flex items-center justify-between border-b border-[#f5f5f7] pb-4">
                 <div className="flex items-center gap-3">
-                  <span className="w-7 h-7 rounded-xl bg-red-50 text-[#b23b35] font-bold text-sm flex items-center justify-center border border-red-200">
+                  <span className="w-8 h-8 rounded-xl bg-neutral-100 text-[#1d1d1f] font-bold text-sm flex items-center justify-center border border-[#e5e5ea]">
                     {sIdx + 1}
                   </span>
-                  <h2 className="text-lg font-bold text-neutral-900">{sem.name}</h2>
+                  <h2 className="text-lg sm:text-xl font-bold text-[#1d1d1f] tracking-tight">{sem.name}</h2>
                 </div>
 
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-neutral-500 hidden sm:inline">
-                    Đã nhập: <b className="text-neutral-900 font-bold">{semCredits}</b> tín chỉ
+                <div className="flex items-center gap-3">
+                  <span className="text-xs sm:text-[13px] text-[#86868b] hidden sm:inline">
+                    Đã nhập: <b className="text-[#1d1d1f] font-bold">{semCredits}</b> tín chỉ
                   </span>
                   {semesters.length > 1 && (
                     <button
                       onClick={() => removeSemester(sem.id)}
-                      className="p-2 rounded-xl text-neutral-400 hover:text-[#b23b35] hover:bg-red-50 transition text-xs flex items-center gap-1 cursor-pointer"
+                      className="p-2 rounded-xl text-[#86868b] hover:text-[#b23b35] hover:bg-red-50 transition text-xs flex items-center gap-1 cursor-pointer font-medium"
                       title="Xóa học kỳ này"
                     >
                       <Trash2 size={16} />
-                      <span className="hidden sm:inline font-medium">Xóa kỳ</span>
+                      <span className="hidden sm:inline">Xóa kỳ</span>
                     </button>
                   )}
                 </div>
@@ -553,7 +551,7 @@ export default function TinhGPAPage() {
 
               {/* Danh sách môn học */}
               <div className="space-y-3">
-                <div className="hidden sm:grid grid-cols-12 gap-3 text-xs font-bold text-neutral-500 uppercase px-2">
+                <div className="hidden sm:grid grid-cols-12 gap-3 text-[11px] font-semibold text-[#86868b] uppercase tracking-wider px-3">
                   <div className="col-span-5">Tên môn học</div>
                   <div className="col-span-2 text-center">Số tín chỉ</div>
                   <div className="col-span-2 text-center">Điểm (Hệ 10)</div>
@@ -569,7 +567,7 @@ export default function TinhGPAPage() {
                   return (
                     <div
                       key={course.id}
-                      className="grid grid-cols-1 sm:grid-cols-12 gap-2 sm:gap-3 items-center bg-neutral-50 border border-neutral-200 p-3 sm:p-2 rounded-2xl shadow-sm"
+                      className="grid grid-cols-1 sm:grid-cols-12 gap-2.5 sm:gap-3 items-center bg-[#f5f5f7] border border-[#e5e5ea]/80 p-3 sm:p-2.5 rounded-2xl shadow-sm"
                     >
                       <div className="col-span-5">
                         <input
@@ -577,12 +575,12 @@ export default function TinhGPAPage() {
                           placeholder="Nhập tên môn học..."
                           value={course.name}
                           onChange={(e) => updateCourse(sem.id, course.id, 'name', e.target.value)}
-                          className="w-full bg-white sm:bg-transparent border sm:border-0 border-neutral-200 px-3 py-2 text-neutral-900 text-sm focus:outline-none focus:bg-white rounded-xl transition"
+                          className="w-full bg-white sm:bg-transparent border sm:border-0 border-[#e5e5ea] px-3.5 py-2 text-[#1d1d1f] text-sm font-medium focus:outline-none focus:bg-white rounded-xl transition placeholder:text-[#c7c7cc]"
                         />
                       </div>
 
                       <div className="col-span-2 flex items-center justify-between sm:justify-center">
-                        <span className="sm:hidden text-xs text-neutral-500">Tín chỉ:</span>
+                        <span className="sm:hidden text-xs text-[#86868b] font-medium">Tín chỉ:</span>
                         <input
                           type="number"
                           min="1"
@@ -590,12 +588,12 @@ export default function TinhGPAPage() {
                           placeholder="Số TC"
                           value={course.credits}
                           onChange={(e) => updateCourse(sem.id, course.id, 'credits', e.target.value)}
-                          className="w-20 sm:w-full bg-white border border-neutral-300 text-center text-neutral-900 font-bold py-2 rounded-xl text-sm focus:outline-none focus:border-[#b23b35] transition shadow-inner"
+                          className="w-20 sm:w-full bg-white border border-[#e5e5ea] text-center text-[#1d1d1f] font-bold py-2 rounded-xl text-sm focus:outline-none focus:border-[#1d1d1f] transition shadow-sm placeholder:text-[#c7c7cc]"
                         />
                       </div>
 
                       <div className="col-span-2 flex items-center justify-between sm:justify-center">
-                        <span className="sm:hidden text-xs text-neutral-500">Điểm hệ 10:</span>
+                        <span className="sm:hidden text-xs text-[#86868b] font-medium">Điểm hệ 10:</span>
                         <input
                           type="number"
                           step="0.1"
@@ -604,19 +602,19 @@ export default function TinhGPAPage() {
                           placeholder="VD: 7.5"
                           value={course.score10}
                           onChange={(e) => updateCourse(sem.id, course.id, 'score10', e.target.value)}
-                          className="w-24 sm:w-full bg-white border border-neutral-300 text-center text-neutral-900 font-bold py-2 rounded-xl text-sm focus:outline-none focus:border-[#b23b35] transition shadow-inner"
+                          className="w-24 sm:w-full bg-white border border-[#e5e5ea] text-center text-[#1d1d1f] font-bold py-2 rounded-xl text-sm focus:outline-none focus:border-[#1d1d1f] transition shadow-sm placeholder:text-[#c7c7cc]"
                         />
                       </div>
 
                       <div className="col-span-2 flex items-center justify-between sm:justify-center text-center">
-                        <span className="sm:hidden text-xs text-neutral-500">Quy đổi:</span>
-                        <div className="py-2">
+                        <span className="sm:hidden text-xs text-[#86868b] font-medium">Quy đổi:</span>
+                        <div className="py-1.5">
                           {converted ? (
-                            <span className="font-bold text-xs text-[#b23b35] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
+                            <span className="font-bold text-xs text-[#1d1d1f] bg-white px-2.5 py-1 rounded-lg border border-[#e5e5ea] shadow-xs">
                               {converted.score4.toFixed(2)} ({converted.grade})
                             </span>
                           ) : (
-                            <span className="text-neutral-400 text-xs font-medium">—</span>
+                            <span className="text-[#86868b] text-xs font-medium">—</span>
                           )}
                         </div>
                       </div>
@@ -624,7 +622,7 @@ export default function TinhGPAPage() {
                       <div className="col-span-1 flex justify-end sm:justify-center">
                         <button
                           onClick={() => removeCourse(sem.id, course.id)}
-                          className="text-neutral-400 hover:text-[#b23b35] p-1.5 rounded-lg transition cursor-pointer"
+                          className="text-[#86868b] hover:text-[#b23b35] p-2 rounded-xl transition cursor-pointer hover:bg-red-50"
                           title="Xóa môn"
                         >
                           <Trash2 size={16} />
@@ -639,77 +637,75 @@ export default function TinhGPAPage() {
               <div className="flex flex-col sm:flex-row items-center justify-between pt-2 gap-3">
                 <button
                   onClick={() => addCourse(sem.id)}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-700 text-xs font-semibold transition cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#f5f5f7] hover:bg-[#e5e5ea] border border-[#e5e5ea] text-[#1d1d1f] text-xs sm:text-[13px] font-bold transition cursor-pointer"
                 >
-                  <Plus size={14} className="text-[#b23b35]" />
+                  <Plus size={15} className="text-[#1d1d1f]" />
                   <span>Thêm môn học</span>
                 </button>
 
-                <div className="text-xs text-neutral-600 flex items-center gap-2">
-                  <span>
-                    GPA kỳ này:{' '}
-                    <b className="text-xl font-extrabold text-neutral-900 ml-1">{semGPA.toFixed(2)}</b>
-                  </span>
+                <div className="text-xs sm:text-sm text-[#515154] flex items-center gap-1.5">
+                  <span>GPA kỳ này:</span>
+                  <strong className="text-xl font-extrabold text-[#1d1d1f] ml-1">{semGPA.toFixed(2)}</strong>
                 </div>
               </div>
             </div>
           );
         })}
 
-        {/* 3. Nút Thêm học kỳ & Xóa làm lại */}
+        {/* 3. NÚT THÊM HỌC KỲ (ĐÃ ĐỔI THÀNH NỀN ĐEN CHỮ TRẮNG) & ĐẶT LẠI */}
         <div className="flex flex-col sm:flex-row items-center gap-3">
           <button
             onClick={addSemester}
-            className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-[#b23b35] hover:bg-[#9b302a] text-white font-bold py-3.5 px-6 rounded-2xl transition text-sm shadow-sm cursor-pointer"
+            className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 bg-[#1d1d1f] hover:bg-black text-white font-bold py-3.5 px-6 rounded-2xl transition-all text-sm sm:text-base shadow-[0_4px_14px_rgba(0,0,0,0.15)] hover:scale-[1.01] cursor-pointer"
           >
-            <Plus size={16} />
+            <Plus size={18} />
             <span>Thêm học kỳ tiếp theo</span>
           </button>
 
           <button
             onClick={handleReset}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-700 font-semibold py-3.5 px-6 rounded-2xl transition text-sm cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-[#f5f5f7] border border-[#e5e5ea] text-[#1d1d1f] font-semibold py-3.5 px-6 rounded-2xl transition text-sm sm:text-base cursor-pointer shadow-sm"
           >
-            <RotateCcw size={16} />
+            <RotateCcw size={17} />
             <span>Đặt lại tất cả</span>
           </button>
         </div>
 
-        {/* 4. Khối Tổng kết GPA Tích Lũy Toàn Khóa */}
-        <div className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl p-6 sm:p-8 shadow-xl shadow-neutral-900/5">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        {/* 4. KHỐI TỔNG KẾT GPA TÍCH LŨY TOÀN KHÓA */}
+        <div className="bg-white rounded-[28px] p-6 sm:p-8 border border-[#e5e5ea]/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
             
             {/* Ô 1: Tổng số tín chỉ */}
-            <div className="bg-neutral-50 border border-neutral-200 p-6 rounded-2xl text-center flex flex-col items-center justify-center min-h-[180px]">
-              <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block mb-2">
-                Tổng số tín chỉ tích lũy
+            <div className="bg-[#f5f5f7] border border-[#e5e5ea] p-6 rounded-2xl text-center flex flex-col items-center justify-center min-h-[190px]">
+              <span className="text-s font-bold uppercase tracking-wider text-[#86868b] block mb-2">
+                Tổng số tín chỉ
               </span>
-              <span className="text-4xl font-extrabold text-neutral-900">{totalCreditsAll}</span>
-              <span className="text-[11px] text-neutral-400 mt-1">Tín chỉ hoàn thành</span>
+              <span className="text-4xl sm:text-5xl font-extrabold text-[#1d1d1f] tracking-tight">{totalCreditsAll}</span>
+              <span className="text-s text-[#86868b] mt-1.5 font-medium">Tín chỉ hoàn thành</span>
             </div>
 
             {/* Ô 2: ĐƯỜNG VÒM PARABOL */}
-            <div className="bg-neutral-50 border border-red-200 p-5 rounded-2xl flex flex-col items-center justify-center shadow-sm min-h-[180px]">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#b23b35] block mb-1">
-                Điểm GPA Tích Lũy (Hệ 4)
+            <div className="bg-[#f5f5f7] border border-[#e5e5ea] p-5 rounded-2xl flex flex-col items-center justify-center shadow-sm min-h-[190px]">
+              <span className="text-s font-bold uppercase tracking-wider text-[#1d1d1f] block mb-1">
+                Điểm GPA Tích Lũy
               </span>
               <GpaParabolArc gpa={cumulativeGPA} />
             </div>
 
-            {/* Ô 3: Xếp loại học lực (NẰM TRÊN 1 HÀNG DUY NHẤT) */}
-            <div className="bg-neutral-50 border border-neutral-200 p-6 rounded-2xl text-center flex flex-col items-center justify-center min-h-[180px]">
-              <span className="text-xs font-bold uppercase tracking-wider text-neutral-500 block mb-3">
+            {/* Ô 3: Xếp loại học lực */}
+            <div className="bg-[#f5f5f7] border border-[#e5e5ea] p-6 rounded-2xl text-center flex flex-col items-center justify-center min-h-[190px]">
+              <span className="text-s font-bold uppercase tracking-wider text-[#86868b] block mb-3">
                 Xếp loại học lực
               </span>
               <div
                 className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-full border shadow-sm ${classification.color}`}
               >
                 <Award size={18} className="shrink-0" />
-                <span className="text-base sm:text-lg font-black uppercase tracking-wider whitespace-nowrap">
+                <span className="text-base sm:text-lg font-bold uppercase tracking-wider whitespace-nowrap">
                   {classification.label}
                 </span>
               </div>
-              <span className="text-[10px] text-neutral-400 mt-3">Dựa trên thang điểm tích lũy 4.0</span>
+              <span className="text-[13px] text-[#86868b] mt-3 font-medium">Dựa trên thang điểm tích lũy 4.0</span>
             </div>
 
           </div>

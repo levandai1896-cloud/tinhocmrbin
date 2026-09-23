@@ -264,7 +264,6 @@ export default function MauDonPage() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // 1. Kiểm tra cache trong localStorage
     try {
       const cached = localStorage.getItem(CACHE_KEY);
       if (cached) {
@@ -275,7 +274,6 @@ export default function MauDonPage() {
           setForms(data);
           setIsLoading(false);
 
-          // Nếu cache còn hạn, không cần gửi request lên Google Sheet nữa
           if (!isExpired) {
             return;
           }
@@ -285,7 +283,6 @@ export default function MauDonPage() {
       console.warn('Lỗi đọc cache localStorage:', e);
     }
 
-    // 2. Tải dữ liệu mới nếu chưa có cache hoặc cache đã hết hạn
     fetch(GOOGLE_SHEET_CSV_URL)
       .then((res) => {
         if (!res.ok) throw new Error('Không thể tải file CSV');
@@ -295,7 +292,6 @@ export default function MauDonPage() {
         const parsed = parseCSV(csvText);
         if (parsed.length > 0) {
           setForms(parsed);
-          // Lưu vào localStorage
           try {
             localStorage.setItem(
               CACHE_KEY,
@@ -330,56 +326,47 @@ export default function MauDonPage() {
   });
 
   return (
-    <div className="min-h-screen flex flex-col items-center pt-8 pb-16 px-4 bg-[#edeef2] text-neutral-900 font-sans relative selection:bg-[#b23b35] selection:text-white">
+    <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','SF_Pro_Display','Segoe_UI',sans-serif] antialiased selection:bg-[#0071e3] selection:text-white pb-24">
       
-      {/* LỚP NỀN NHÁM MỜ / BÊ TÔNG XƯỚC SVG */}
-      <div 
-        className="fixed inset-0 pointer-events-none opacity-45 mix-blend-multiply z-0"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E")`,
-          backgroundRepeat: 'repeat'
-        }}
-      />
-      
-      <div className="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-white/70 via-transparent to-black/5 z-0" />
-
-      {/* 1. TIÊU ĐỀ TRANG */}
-      <div className="relative z-10 text-center space-y-3.5 pt-4 mb-9 max-w-3xl">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
-            <FileCheck2 size={14} className="text-red-100" />
-            <span>Thủ tục đào tạo & Hành chính sinh viên DTU</span>
+      {/* 1. TIÊU ĐỀ TRANG CĂN GIỮA STYLE APPLE */}
+      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+        <div className="space-y-3 text-center max-w-3xl">
+          <div>
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
+              <FileCheck2 size={15} className="text-red-100" />
+              <span>Thủ tục đào tạo & Hành chính sinh viên DTU</span>
+            </div>
           </div>
+
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1d1d1f] leading-tight">
+            Mẫu Đơn <span className="text-[#b23b35]">Sinh Viên</span>
+          </h1>
+
+          <p className="text-[20px] leading-[25px] font-normal text-[#86868b] max-w-xl mx-auto">
+            Tổng hợp các mẫu đơn đăng ký, hoãn thi, phúc khảo, chuyển ngành và thủ tục nghĩa vụ quân sự thường gặp.
+          </p>
         </div>
-
-        <h1 className="text-3xl sm:text-4xl font-black tracking-normal uppercase">
-          MẪU ĐƠN <span className="text-[#b23b35]">SINH VIÊN</span>
-        </h1>
-
-        <p className="text-neutral-600 text-xs sm:text-sm font-normal tracking-wide">
-          Tổng hợp các mẫu đơn xin học vụ, hoãn thi, phúc khảo và thủ tục nghĩa vụ quân sự
-        </p>
-      </div>
+      </section>
 
       {/* 2. KHỐI TÌM KIẾM & DANH SÁCH */}
-      <div className="relative z-10 w-full max-w-4xl space-y-6">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-6">
         
         {/* Tìm kiếm & Bộ lọc */}
-        <div className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl p-5 shadow-xl shadow-neutral-900/5 space-y-4">
+        <div className="bg-white rounded-[26px] p-5 sm:p-7 border border-[#e5e5ea]/80 shadow-[0_4px_20px_rgba(0,0,0,0.04)] space-y-4">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400" size={18} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#86868b]" size={19} />
             <input
               type="text"
               placeholder="Nhập tên mẫu đơn cần tìm (VD: hoãn thi, rút học phần, quân sự...)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-neutral-50 border border-neutral-300 hover:border-neutral-400 focus:border-[#b23b35] focus:ring-2 focus:ring-[#b23b35]/15 rounded-2xl pl-11 pr-4 py-3 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none transition shadow-inner"
+              className="w-full bg-[#f5f5f7] border border-[#e5e5ea] focus:border-[#b23b35] focus:bg-white focus:ring-4 focus:ring-[#b23b35]/10 rounded-2xl pl-11 pr-4 py-3 text-sm sm:text-[15px] text-[#1d1d1f] placeholder:text-[#86868b] focus:outline-none transition shadow-sm"
             />
           </div>
 
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs text-neutral-500 mr-1 flex items-center gap-1 font-medium">
-              <Tag size={12} className="text-[#b23b35]" /> Phân loại:
+            <span className="text-xs font-bold text-[#1d1d1f] mr-1 flex items-center gap-1 uppercase tracking-wider">
+              <Tag size={13} className="text-[#b23b35]" /> Phân loại:
             </span>
             {categories.map((cat) => {
               const isSelected = selectedCategory === cat;
@@ -388,10 +375,10 @@ export default function MauDonPage() {
                   key={cat}
                   type="button"
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-full text-xs sm:text-[13px] font-semibold transition cursor-pointer ${
                     isSelected
-                      ? 'bg-[#b23b35] text-white shadow-md shadow-red-900/20'
-                      : 'bg-neutral-100 hover:bg-neutral-200 text-neutral-600 border border-neutral-200'
+                      ? 'bg-[#b23b35] text-white shadow-sm hover:bg-[#96312c]'
+                      : 'bg-[#f5f5f7] hover:bg-[#e5e5ea] text-[#515154] border border-[#e5e5ea]'
                   }`}
                 >
                   {cat}
@@ -402,16 +389,16 @@ export default function MauDonPage() {
         </div>
 
         {/* Danh sách mẫu đơn */}
-        <div className="space-y-2.5">
+        <div className="space-y-3">
           {isLoading ? (
-            <div className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl py-14 px-4 text-center text-neutral-500 text-sm flex items-center justify-center gap-2 shadow-sm">
-              <Loader2 size={18} className="animate-spin text-[#b23b35]" />
+            <div className="bg-white rounded-[26px] border border-[#e5e5ea]/80 py-14 px-4 text-center text-[#86868b] text-sm flex items-center justify-center gap-2.5 shadow-sm">
+              <Loader2 size={20} className="animate-spin text-[#b23b35]" />
               <span>Đang tải danh sách mẫu đơn mới nhất...</span>
             </div>
           ) : filteredForms.length === 0 ? (
-            <div className="bg-white/95 backdrop-blur-sm border border-neutral-300 rounded-3xl py-12 px-4 text-center text-neutral-500 text-sm space-y-2 shadow-sm">
-              <Info size={28} className="mx-auto text-neutral-400" />
-              <p className="font-medium text-neutral-700">Không tìm thấy mẫu đơn nào phù hợp với yêu cầu tìm kiếm.</p>
+            <div className="bg-white rounded-[26px] border border-[#e5e5ea]/80 py-12 px-4 text-center text-[#86868b] text-sm space-y-2.5 shadow-sm">
+              <Info size={30} className="mx-auto text-[#86868b]" />
+              <p className="font-semibold text-[#1d1d1f] text-base">Không tìm thấy mẫu đơn nào phù hợp với yêu cầu tìm kiếm.</p>
             </div>
           ) : (
             filteredForms.map((item) => {
@@ -420,25 +407,25 @@ export default function MauDonPage() {
               return (
                 <div
                   key={item.id}
-                  className="bg-white/95 backdrop-blur-sm border border-neutral-300 hover:border-[#b23b35] rounded-2xl p-4 flex items-center justify-between gap-4 transition group shadow-sm hover:shadow-md"
+                  className="bg-white rounded-[22px] border border-[#e5e5ea]/80 hover:border-[#b23b35] p-4 sm:p-5 flex items-center justify-between gap-4 transition-all duration-200 group shadow-sm hover:shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:-translate-y-0.5"
                 >
                   <div className="flex items-center gap-3.5 min-w-0">
-                    <div className="w-10 h-10 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-[#b23b35] shrink-0 group-hover:scale-105 transition-transform">
-                      <FileText size={20} />
+                    <div className="w-11 h-11 rounded-2xl bg-[#f5f5f7] border border-[#e5e5ea] flex items-center justify-center text-[#b23b35] shrink-0 group-hover:scale-105 transition-transform">
+                      <FileText size={22} />
                     </div>
                     
                     <div className="min-w-0 space-y-1">
-                      <h2 className="text-sm font-bold text-neutral-800 group-hover:text-[#b23b35] transition-colors truncate">
+                      <h2 className="text-sm sm:text-[15px] font-bold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors truncate">
                         {item.title}
                       </h2>
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-500 text-[10px] font-semibold">
+                        <span className="px-2 py-0.5 rounded-md bg-[#f5f5f7] border border-[#e5e5ea] text-[#515154] text-[11px] font-semibold">
                           {item.category}
                         </span>
-                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
+                        <span className={`text-[10.5px] font-bold px-1.5 py-0.5 rounded ${
                           item.format === 'DOCX' 
-                            ? 'bg-blue-50 text-blue-600 border border-blue-200' 
-                            : 'bg-red-50 text-[#b23b35] border border-red-200'
+                            ? 'bg-blue-50 text-blue-600 border border-blue-200/60' 
+                            : 'bg-red-50 text-[#b23b35] border border-red-200/60'
                         }`}>
                           .{item.format}
                         </span>
@@ -450,9 +437,10 @@ export default function MauDonPage() {
                   <a
                     href={downloadLink}
                     download
-                    className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-neutral-100 hover:bg-[#b23b35] border border-neutral-200 hover:border-[#b23b35] text-neutral-700 hover:text-white text-xs font-semibold transition shrink-0 group/btn cursor-pointer shadow-sm"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#f5f5f7] hover:bg-[#b23b35] border border-[#e5e5ea] hover:border-[#b23b35] text-[#1d1d1f] hover:text-white text-xs sm:text-sm font-bold transition shrink-0 group/btn cursor-pointer shadow-sm hover:shadow"
+                    title="Tải xuống mẫu đơn"
                   >
-                    <Download size={14} className="group-hover/btn:-translate-y-0.5 transition-transform" />
+                    <Download size={15} className="group-hover/btn:-translate-y-0.5 transition-transform" />
                     <span className="hidden sm:inline">Tải về</span>
                   </a>
                 </div>

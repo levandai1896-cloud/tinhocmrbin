@@ -10,7 +10,7 @@ import {
   Play,
   ChevronRight
 } from 'lucide-react';
-import { getNotifications } from '@/data/notifications'; // <-- Gọi hàm lấy từ Google Sheet
+import { getNotifications } from '@/data/notifications';
 
 interface FeatureCard {
   title: string;
@@ -19,18 +19,18 @@ interface FeatureCard {
   icon: any;
   href: string;
   btnText: string;
-  isSpecial?: boolean;
+  isAppleGradient?: boolean;
 }
 
 const FEATURES: FeatureCard[] = [
   {
-    title: 'Khóa Học Tin Học',
+    title: 'Khóa Tin Đầu Ra',
     badge: 'Khảo sát & Chuẩn đầu ra',
     description: 'Lộ trình ôn thi tin học khảo sát cấp tốc, mẹo thực chiến Word - Excel khóa luận và hỗ trợ 1:1 suốt khóa học.',
     icon: Laptop,
     href: '/khoa-hoc-tin',
     btnText: 'Xem khóa học',
-    isSpecial: true,
+    isAppleGradient: true,
   },
   {
     title: 'Cộng Đồng Tốt Nghiệp',
@@ -75,240 +75,248 @@ const FEATURES: FeatureCard[] = [
 ];
 
 export default async function HomePage() {
-  // Lấy dữ liệu trực tiếp từ Google Sheet và cắt lấy 3 tin mới nhất
   const notifications = await getNotifications();
   const latestNews = notifications.slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#07080b] text-neutral-200 font-sans selection:bg-[#b23b35] selection:text-white">
+    <div 
+      className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] antialiased selection:bg-[#0071e3] selection:text-white pb-24"
+      style={{
+        fontFamily: "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+        letterSpacing: '-0.011em',
+      }}
+    >
       
-      {/* 1. NỬA TRÊN VÙNG ĐEN */}
-      <section className="relative w-full pt-8 pb-24 sm:pb-32 px-4 overflow-hidden flex flex-col items-center">
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-20 filter blur-[1px] pointer-events-none scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop')`
-          }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#07080b]/85 via-[#07080b]/75 to-[#07080b] pointer-events-none" />
+      {/* 1. TIÊU ĐỀ CHÍNH */}
+      <section className="w-full pt-12 pb-8 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
+        <div className="space-y-2 mb-6 text-center max-w-3xl">
+          <p className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#b23b35]">
+            Chuẩn đầu ra tin học • Đồng hành tốt nghiệp
+          </p>
+          <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-[#1d1d1f] leading-tight">
+            Cổng Thông Tin Học Tập. <br className="hidden sm:inline" />
+            <span className="text-[#86868b]">Dành cho sinh viên DTU.</span>
+          </h1>
+        </div>
 
-        <div className="relative z-10 w-full max-w-6xl mx-auto flex flex-col items-center">
-          <div className="text-center space-y-1 mb-8 max-w-3xl">
-            <h1 className="text-2xl sm:text-4xl font-black tracking-tight uppercase text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-              CỔNG THÔNG TIN HỌC TẬP
-            </h1>
-            <p className="text-lg sm:text-2xl font-black uppercase text-[#ff4d4f] tracking-wide drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-              SINH VIÊN DTU
-            </p>
-            <p className="text-xs font-bold text-neutral-300 uppercase tracking-widest pt-0.5">
-              Chuẩn đầu ra tin học • Đồng hành tốt nghiệp
-            </p>
-          </div>
+        {/* 2. LƯỚI 6 Ô TÍNH NĂNG - ĐÃ THU GỌN ĐỘ DÀI CHIỀU DỌC */}
+        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+          {FEATURES.map((item, idx) => {
+            const Icon = item.icon;
 
-          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {FEATURES.map((item, idx) => {
-              const Icon = item.icon;
-
-              if (item.isSpecial) {
-                return (
+            // Ô KHÓA HỌC TIN HỌC (VIỀN & NỀN GRADIENT APPLE)
+            if (item.isAppleGradient) {
+              return (
+                <div 
+                  key={idx}
+                  className="p-[2px] rounded-[28px] bg-gradient-to-br from-[#2c65f6] via-[#a844f2] to-[#ff7a00] shadow-[0_8px_25px_rgba(168,68,242,0.16)] hover:shadow-[0_14px_35px_rgba(168,68,242,0.25)] transition-all duration-300 ease-out hover:-translate-y-1"
+                >
                   <Link
-                    key={idx}
                     href={item.href}
-                    className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-emerald-400 hover:border-emerald-300 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)]"
+                    className="relative w-full h-full bg-gradient-to-b from-white via-white to-[#fbfaff] rounded-[26px] p-5 sm:p-6 flex flex-col justify-between overflow-hidden cursor-pointer"
                   >
-                    <div className="space-y-3">
+                    <div className="absolute -top-10 -right-10 w-36 h-36 bg-gradient-to-br from-blue-400/15 via-purple-400/15 to-orange-400/15 rounded-full blur-xl pointer-events-none" />
+
+                    <div className="space-y-3.5 relative z-10">
+                      {/* Badge & Icon */}
                       <div className="flex items-center justify-between">
-                        <div className="w-10 h-10 rounded-xl bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
-                          <Icon size={19} />
-                        </div>
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 border-2 border-emerald-400 bg-black/80 text-emerald-200 rounded-md">
+                        <span className="text-[11px] font-bold tracking-wide px-3 py-0.5 rounded-full bg-gradient-to-r from-blue-50 via-purple-50 to-orange-50 border border-purple-200/70 text-purple-900 shadow-sm">
                           {item.badge}
                         </span>
+
+                        <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#2c65f6]/10 via-[#a844f2]/10 to-[#ff7a00]/10 border border-purple-200/50 flex items-center justify-center text-[#a844f2] transition-transform duration-300 group-hover:scale-105 shadow-sm">
+                          <Icon size={20} strokeWidth={2.2} />
+                        </div>
                       </div>
 
-                      <div className="space-y-1">
-                        <h2 className="text-base font-black text-white group-hover:text-emerald-300 transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+                      {/* Tiêu đề gradient & Mô tả */}
+                      <div className="space-y-1.5">
+                        <h2 className="text-[19px] sm:text-[21px] font-extrabold tracking-tight leading-snug bg-gradient-to-r from-[#2c65f6] via-[#a844f2] to-[#e44d32] bg-clip-text text-transparent">
                           {item.title}
                         </h2>
-                        <p className="text-xs text-neutral-200 font-medium leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                        <p 
+                          className="text-[15px] sm:text-[16px] leading-[23px] font-normal text-[#1d1d1f]"
+                          style={{
+                            fontFamily: '"SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif'
+                          }}
+                        >
                           {item.description}
                         </p>
                       </div>
                     </div>
 
-                    <div className="pt-4 mt-3 border-t-2 border-emerald-400/40 flex items-center gap-1.5 text-xs font-bold text-emerald-300 group-hover:text-emerald-200 transition-colors">
-                      <span>{item.btnText}</span>
-                      <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
-                );
-              }
-
-              return (
-                <Link
-                  key={idx}
-                  href={item.href}
-                  className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-white/85 hover:border-white p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)]"
-                >
-                  <div className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 rounded-xl bg-white/10 border-2 border-white/85 text-[#b23b35] group-hover:text-white flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
-                        <Icon size={19} />
-                      </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 border-2 border-white/85 bg-black/80 text-white rounded-md">
-                        {item.badge}
+                    {/* Nút bấm */}
+                    <div className="pt-4 mt-4 border-t border-purple-100/60 flex items-center justify-between relative z-10">
+                      <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-bold text-white bg-gradient-to-r from-[#2c65f6] via-[#a844f2] to-[#e44d32] hover:opacity-95 transition-all shadow-[0_4px_14px_rgba(168,68,242,0.28)] hover:scale-[1.02]">
+                        <span>{item.btnText}</span>
+                        <ArrowRight size={14} />
                       </span>
                     </div>
+                  </Link>
+                </div>
+              );
+            }
 
-                    <div className="space-y-1">
-                      <h2 className="text-base font-black text-white transition-colors drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-                        {item.title}
-                      </h2>
-                      <p className="text-xs text-neutral-200 font-medium leading-relaxed drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
-                        {item.description}
-                      </p>
+            // 5 Ô CÒN LẠI (NỀN TRẮNG CHUẨN APPLE)
+            return (
+              <Link
+                key={idx}
+                href={item.href}
+                className="group relative bg-white rounded-[26px] p-5 sm:p-6 flex flex-col justify-between transition-all duration-300 ease-out hover:-translate-y-1 shadow-[0_4px_16px_rgba(0,0,0,0.03)] hover:shadow-[0_14px_30px_rgba(0,0,0,0.07)] border border-[#e5e5ea]/80 overflow-hidden cursor-pointer"
+              >
+                <div className="space-y-3.5">
+                  {/* Badge & Icon */}
+                  <div className="flex items-center justify-between">
+                    <span className="text-[11px] font-semibold tracking-wide px-3 py-0.5 rounded-full bg-[#f5f5f7] text-[#86868b]">
+                      {item.badge}
+                    </span>
+
+                    <div className="w-10 h-10 rounded-2xl bg-[#f5f5f7] text-[#1d1d1f] flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
+                      <Icon size={20} strokeWidth={2.2} />
                     </div>
                   </div>
 
-                  <div className="pt-4 mt-3 border-t-2 border-white/40 flex items-center gap-1.5 text-xs font-bold text-neutral-100 group-hover:text-white transition-colors">
-                    <span>{item.btnText}</span>
-                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  {/* Tiêu đề & Mô tả */}
+                  <div className="space-y-1.5">
+                    <h2 className="text-[19px] sm:text-[21px] font-bold text-[#1d1d1f] tracking-tight group-hover:text-[#0071e3] transition-colors leading-snug">
+                      {item.title}
+                    </h2>
+                    <p 
+                      className="text-[15px] sm:text-[16px] leading-[23px] font-normal text-[#1d1d1f]"
+                      style={{
+                        fontFamily: '"SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif'
+                      }}
+                    >
+                      {item.description}
+                    </p>
                   </div>
-                </Link>
-              );
-            })}
-          </div>
+                </div>
 
+                {/* Nút bấm Apple Pill Button */}
+                <div className="pt-4 mt-4 border-t border-[#f5f5f7] flex items-center justify-between">
+                  <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-[13px] font-bold bg-[#0071e3] hover:bg-[#0077ed] text-white transition-all shadow-sm group-hover:scale-[1.02]">
+                    <span>{item.btnText}</span>
+                    <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 
-      {/* 2. NỬA DƯỚI: NỀN BÊ TÔNG NHÁM HẠT MỜ */}
-      <div className="w-full bg-[#edeef2] text-neutral-900 border-t border-neutral-300 relative pb-16">
-        <div 
-          className="absolute inset-0 pointer-events-none opacity-45 mix-blend-multiply z-0"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.35'/%3E%3C/svg%3E")`,
-            backgroundRepeat: 'repeat'
-          }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 space-y-14">
-          
-          {/* KHỐI PATCH NOTE */}
-          <section className="-mt-16 sm:-mt-24 bg-white/95 backdrop-blur-md border border-neutral-300 shadow-2xl p-6 md:p-8 flex flex-col lg:flex-row gap-8 items-center [clip-path:polygon(0_0,calc(100%-20px)_0,100%_20px,100%_100%,20px_100%,0_calc(100%-20px))]">
-            <div className="flex-1 flex flex-col justify-between space-y-3">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2">
-                  <span className="text-2xl font-black uppercase tracking-wide text-neutral-900">
-                    THÔNG BÁO KHOÁ TIN KHẢO SÁT T12/2026
-                  </span>
-                  <ArrowRight size={18} className="text-[#b23b35]" />
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-bold px-2.5 py-0.5 bg-[#b23b35] text-white uppercase rounded-sm">
-                    KHẢO SÁT TIN HỌC
-                  </span>
-                  <span className="text-[10px] font-bold px-2.5 py-0.5 bg-neutral-200 text-neutral-700 uppercase rounded-sm">
-                    CHUẨN ĐẦU RA DTU
-                  </span>
-                </div>
-
-                <h3 className="text-lg font-bold text-neutral-900 pt-1">
-                  Khai Giảng Khóa Ôn Thi Khảo Sát Tin DTU - Mr.Bin
-                </h3>
-
-                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
-                  Hệ thống hóa toàn bộ đề thi Word & Excel khảo sát chuẩn đầu ra thực tế tại trường. Hướng dẫn làm bài trực tiếp trên máy tính, mẹo thực chiến tránh bẫy đề thi và đồng hành giải đáp 1:1 cho học viên đến khi cầm chắc chứng chỉ tốt nghiệp.
-                </p>
+      {/* 3. KHỐI THÔNG BÁO KHÓA HỌC */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-4">
+        <div className="bg-white rounded-[28px] p-6 sm:p-9 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] border border-[#e5e5ea]/80 flex flex-col lg:flex-row gap-8 items-center transition-all duration-300">
+          <div className="flex-1 flex flex-col justify-between space-y-3.5">
+            <div className="space-y-2.5">
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-bold px-3 py-1 bg-[#b23b35] text-white rounded-full uppercase tracking-wider">
+                  Khóa Tin T12/2026
+                </span>
+                <span className="text-[11px] font-semibold px-3 py-1 bg-[#f5f5f7] text-[#86868b] rounded-full uppercase tracking-wider">
+                  Chuẩn đầu ra
+                </span>
               </div>
 
-              <div className="pt-2">
-                <Link 
-                  href="/khoa-hoc-tin/dot-12-2026"
-                  className="inline-flex items-center gap-2 text-xs font-bold uppercase text-[#b23b35] hover:text-[#9b302a] font-black transition-colors"
-                >
-                  <span>Xem chi tiết lịch khai giảng & đăng ký</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            </div>
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#1d1d1f] tracking-tight">
+                Mr.Bin - Khai giảng khoá tin khảo sát DTU đợt tốt nghiệp 12/2026
+              </h3>
 
-            {/* Khung Video YouTube */}
-            <div className="w-full lg:w-[440px] aspect-video bg-neutral-950 border border-neutral-300 relative flex flex-col items-center justify-center text-center p-4 group cursor-pointer shadow-inner">
-              <div className="w-12 h-12 rounded-full bg-[#b23b35] text-white flex items-center justify-center pl-0.5 shadow-lg group-hover:scale-110 group-hover:bg-[#9b302a] transition-all duration-200">
-                <Play size={20} fill="currentColor" />
-              </div>
-              <p className="text-xs font-bold text-white uppercase tracking-wider mt-3">
-                Video Hướng Dẫn Ôn Thi Chuẩn Đầu Ra
-              </p>
-              <p className="text-[11px] text-neutral-400 mt-1">
-                Bấm để xem video giải đề khảo sát trực tiếp
+              <p 
+                className="text-[16px] sm:text-[17px] leading-[25px] font-normal text-[#1d1d1f]"
+                style={{
+                  fontFamily: '"SF Pro Text", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif'
+                }}
+              >
+                Hệ thống hóa toàn bộ đề thi Word & Excel khảo sát chuẩn đầu ra thực tế tại trường. Hướng dẫn trực tiếp trên máy tính với mẹo thực chiến tránh bẫy và đồng hành 1:1 cho học viên đến khi hoàn thành chuẩn tốt nghiệp.
               </p>
             </div>
-          </section>
 
-          {/* PHÂN KHU TIN TỨC SỰ KIỆN: LẤY TRỰC TIẾP TỪ GOOGLE SHEET */}
-          <section className="space-y-6">
-            <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black uppercase tracking-wider text-neutral-900">
-                TIN TỨC SỰ KIỆN
-              </h2>
-              <Link href="/thong-bao" className="inline-flex items-center gap-1.5 text-xs font-bold text-[#b23b35] hover:underline">
-                <span>Xem tất cả thông báo</span>
-                <ArrowRight size={14} />
+            <div className="pt-1">
+              <Link 
+                href="/khoa-hoc-tin/dot-12-2026"
+                className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-[#0071e3] hover:underline"
+              >
+                <span>Xem lịch khai giảng & đăng ký</span>
+                <ArrowRight size={17} />
               </Link>
             </div>
+          </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {latestNews.map((news) => (
-                <Link
-                  key={news.id}
-                  href={news.linkUrl}
-                  className="group bg-white border border-neutral-300 hover:border-[#b23b35] overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 shadow-md hover:shadow-xl [clip-path:polygon(0_0,calc(100%-14px)_0,100%_14px,100%_100%,14px_100%,0_calc(100%-14px))]"
-                >
-                  <div>
-                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-200">
-                      <img
-                        src={news.image}
-                        alt={news.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
+          {/* Khung Video */}
+          <div className="w-full lg:w-[420px] aspect-video bg-[#000000] rounded-[24px] relative flex flex-col items-center justify-center text-center p-4 group cursor-pointer shadow-lg overflow-hidden">
+            <div className="w-13 h-13 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center pl-1 shadow-md group-hover:scale-110 group-hover:bg-white/30 transition-all duration-300">
+              <Play size={22} fill="currentColor" />
+            </div>
+            <p className="text-sm font-bold text-white tracking-wide mt-3">
+              Video Hướng Dẫn Ôn Thi Chuẩn Đầu Ra
+            </p>
+            <p className="text-xs text-neutral-400 mt-0.5">
+              Bấm để xem bài giải đề thực chiến
+            </p>
+          </div>
+        </div>
+      </section>
 
-                    <div className="p-5 space-y-2.5">
-                      <div className="flex items-center gap-2 text-[9px] font-bold uppercase">
-                        <span className="px-2 py-0.5 border border-[#b23b35]/40 text-[#b23b35] bg-red-50">
-                          {news.category}
-                        </span>
-                        <span className="px-2 py-0.5 border border-neutral-300 text-neutral-600 bg-neutral-100">
-                          {news.tag}
-                        </span>
-                      </div>
+      {/* 4. PHÂN KHU TIN TỨC SỰ KIỆN */}
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 mt-12 space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-2xl font-bold tracking-tight text-[#1d1d1f]">
+            Tin tức & Sự kiện
+          </h2>
+          <Link href="/thong-bao" className="inline-flex items-center gap-1 text-sm font-semibold text-[#0071e3] hover:underline">
+            <span>Xem tất cả</span>
+            <ChevronRight size={16} />
+          </Link>
+        </div>
 
-                      <h3 className="text-base font-bold text-neutral-900 group-hover:text-[#b23b35] transition-colors line-clamp-2 leading-snug">
-                        {news.title}
-                      </h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {latestNews.map((news) => (
+            <Link
+              key={news.id}
+              href={news.linkUrl}
+              className="group bg-white rounded-[26px] border border-[#e5e5ea]/80 overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 shadow-[0_4px_20px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.09)]"
+            >
+              <div>
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#e5e5ea]">
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                  />
+                </div>
 
-                      <p className="text-xs text-neutral-600 line-clamp-2 leading-relaxed">
-                        {news.summary}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="px-5 py-3 border-t border-neutral-100 bg-neutral-50 flex items-center justify-between text-[11px] text-neutral-500 font-mono">
-                    <span>{news.date ? news.date.replace(/\./g, '/') : ''}</span>
-                    <span className="text-neutral-800 font-bold group-hover:text-[#b23b35] flex items-center gap-0.5 transition-colors">
-                      Chi tiết <ChevronRight size={12} />
+                <div className="p-6 space-y-2.5">
+                  <div className="flex items-center gap-2 text-[10px] font-semibold uppercase">
+                    <span className="px-2.5 py-0.5 bg-[#f5f5f7] text-[#1d1d1f] rounded-full">
+                      {news.category}
+                    </span>
+                    <span className="px-2.5 py-0.5 bg-[#f5f5f7] text-[#86868b] rounded-full">
+                      {news.tag}
                     </span>
                   </div>
-                </Link>
-              ))}
-            </div>
-          </section>
 
+                  <h3 className="text-base font-bold text-[#1d1d1f] group-hover:text-[#0071e3] transition-colors line-clamp-2 leading-snug">
+                    {news.title}
+                  </h3>
+
+                  <p className="text-xs text-[#86868b] line-clamp-2 leading-relaxed font-normal">
+                    {news.summary}
+                  </p>
+                </div>
+              </div>
+
+              <div className="px-6 py-4 border-t border-[#f5f5f7] flex items-center justify-between text-xs text-[#86868b]">
+                <span>{news.date ? news.date.replace(/\./g, '/') : ''}</span>
+                <span className="text-[#0071e3] font-semibold flex items-center gap-0.5 group-hover:underline">
+                  Chi tiết <ChevronRight size={13} />
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
 
     </div>
   );
