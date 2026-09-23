@@ -114,14 +114,14 @@ export default async function HomePage() {
                   <Link
                     key={idx}
                     href={item.href}
-                    className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-emerald-400 hover:border-emerald-300 p-5 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)] [clip-path:polygon(0_0,calc(100%-14px)_0,100%_14px,100%_100%,14px_100%,0_calc(100%-14px))]"
+                    className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-emerald-400 hover:border-emerald-300 p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_0_30px_rgba(16,185,129,0.35)]"
                   >
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <div className="w-10 h-10 bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
+                        <div className="w-10 h-10 rounded-xl bg-emerald-950/90 border-2 border-emerald-400 text-emerald-300 flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
                           <Icon size={19} />
                         </div>
-                        <span className="text-[10px] font-bold px-2.5 py-0.5 border-2 border-emerald-400 bg-black/80 text-emerald-200">
+                        <span className="text-[10px] font-bold px-2.5 py-0.5 border-2 border-emerald-400 bg-black/80 text-emerald-200 rounded-md">
                           {item.badge}
                         </span>
                       </div>
@@ -148,14 +148,14 @@ export default async function HomePage() {
                 <Link
                   key={idx}
                   href={item.href}
-                  className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-white/85 hover:border-white p-5 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)] [clip-path:polygon(0_0,calc(100%-14px)_0,100%_14px,100%_100%,14px_100%,0_calc(100%-14px))]"
+                  className="group relative bg-[#07080b]/70 hover:bg-[#07080b]/90 backdrop-blur-md border-2 border-white/85 hover:border-white p-5 rounded-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1 shadow-[0_8px_32px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)]"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <div className="w-10 h-10 bg-white/10 border-2 border-white/85 text-[#b23b35] group-hover:text-white flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
+                      <div className="w-10 h-10 rounded-xl bg-white/10 border-2 border-white/85 text-[#b23b35] group-hover:text-white flex items-center justify-center transition-all duration-200 group-hover:scale-105 shadow-md">
                         <Icon size={19} />
                       </div>
-                      <span className="text-[10px] font-bold px-2 py-0.5 border-2 border-white/85 bg-black/80 text-white">
+                      <span className="text-[10px] font-bold px-2 py-0.5 border-2 border-white/85 bg-black/80 text-white rounded-md">
                         {item.badge}
                       </span>
                     </div>
