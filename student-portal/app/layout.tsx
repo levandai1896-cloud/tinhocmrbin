@@ -10,7 +10,7 @@ const beVietnamPro = Be_Vietnam_Pro({
 
 export const metadata = {
   title: 'Cổng Học Tập & Tiện Ích Sinh Viên',
-  description: 'Khoa Công nghệ thông tin',
+  description: 'Tin Đầu Ra DTU - Mr.Bin',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
