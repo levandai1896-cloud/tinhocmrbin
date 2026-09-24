@@ -98,8 +98,8 @@ export default function CongDongPage() {
   return (
     <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','SF_Pro_Display','Segoe_UI',sans-serif] antialiased selection:bg-[#0071e3] selection:text-white pb-24">
       
-      {/* 1. TIÊU ĐỀ TRANG CĂN GIỮA THEO STYLE APPLE */}
-      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
+      {/* 1. TIÊU ĐỀ TRANG CĂN GIỮA (ĐÃ BỎ -mt-7 ĐỂ KHÔNG BỊ ĐÈ NAVBAR) */}
+      <section className="w-full pt-5 pb-6 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
         <div className="space-y-3 text-center max-w-3xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
@@ -119,7 +119,7 @@ export default function CongDongPage() {
       </section>
 
       {/* 2. GRID DANH SÁCH CÁC KHÓA K28 - K32 */}
-      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-4">
+      <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 my-2">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {COMMUNITIES.map((item) => {
             const isActive = item.status === 'active';

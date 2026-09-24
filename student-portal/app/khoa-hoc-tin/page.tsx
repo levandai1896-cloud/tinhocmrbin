@@ -84,12 +84,12 @@ export default function KhoaHocTinPage() {
     >
       
       {/* 1. TIÊU ĐỀ TRANG (HUY HIỆU ĐÃ ĐỔI THÀNH MÀU TÍM NỔI BẬT) */}
-      <section className="w-full pt-8 pb-2 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
+      <section className="w-full pt-0 pb-6 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
         <div className="space-y-3 text-center max-w-3xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#8b5cf6] text-white text-xs font-semibold rounded-full shadow-[0_2px_8px_rgba(139,92,246,0.35)]">
               <Laptop size={16} className="text-purple-100" />
-              <span>Đào tạo kỹ năng thực chiến & Chuẩn đầu ra</span>
+              <span>Đào tạo kỹ năng Chuẩn đầu ra</span>
             </div>
           </div>
 

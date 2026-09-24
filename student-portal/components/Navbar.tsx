@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
@@ -26,12 +25,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
-  // Tự động đóng menu khi bấm chuyển trang
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
-  // Khóa cuộn trang khi menu mobile đang mở
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -44,38 +41,33 @@ export default function Navbar() {
   }, [isOpen]);
 
   return (
-    <header 
-      className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-[#e5e5ea] shadow-[0_2px_12px_rgba(0,0,0,0.03)] select-none"
-      style={{
-        fontFamily: "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        letterSpacing: '-0.011em',
-      }}
-    >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between md:justify-center">
+    // Dùng chung max-w-7xl và px-4 sm:px-6 giống hệt thẻ section của khối Hero bên dưới để đồng bộ độ rộng hoàn toàn
+    <header className="sticky top-0 inset-x-0 z-50 w-full py-3 flex justify-center pointer-events-none bg-[#f5f5f7]">
+      <div className="w-full max-w-7xl px-4 sm:px-6 flex justify-center">
         
-        {/* LOGO (TRÊN MOBILE BÊN TRÁI, TRÊN DESKTOP CĂN CÙNG MENU) */}
-        <div className="flex items-center gap-4 sm:gap-5">
+        {/* THANH NAVBAR ĐẢO NỔI KHỚP TUYỆT ĐỐI */}
+        <div 
+          className="pointer-events-auto w-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.04)] border border-[#e5e5ea]/80 rounded-full px-6 sm:px-8 h-16 flex items-center justify-between transition-all"
+          style={{
+            fontFamily: "'SF Pro Display', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+            letterSpacing: '-0.011em',
+          }}
+        >
+          
+          {/* LOGO THƯƠNG HIỆU */}
           <Link 
             href="/" 
             scroll={false}
             prefetch={false}
-            className="flex items-center transition-transform hover:opacity-85 active:scale-95 shrink-0"
-            title="Trang chủ"
+            className="flex items-center gap-1.5 transition-transform hover:opacity-85 active:scale-95 shrink-0 pl-1"
           >
-            <div className="relative w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center">
-              <Image
-                src="/logo-bin-study.svg"
-                alt="Logo"
-                width={40}
-                height={40}
-                priority
-                className="w-full h-full object-contain"
-              />
-            </div>
+            <span className="text-xl font-black tracking-tight text-[#1d1d1f]">
+              bin<span className="text-[#b23b35]">.</span>study
+            </span>
           </Link>
 
-          {/* DÀN MENU CHO MÁY TÍNH (DESKTOP) */}
-          <nav className="hidden md:flex items-center gap-5 lg:gap-7">
+          {/* MENU DESKTOP */}
+          <nav className="hidden md:flex items-center gap-6 lg:gap-7">
             {NAV_ITEMS.map((item) => {
               const isActive = pathname === item.href;
 
@@ -85,50 +77,51 @@ export default function Navbar() {
                   href={item.href}
                   scroll={false}
                   prefetch={false}
-                  className={`flex items-center gap-1.5 text-[15px] tracking-tight transition-colors relative py-5 cursor-pointer ${
+                  className={`text-[14px] font-semibold tracking-tight transition-colors relative py-2 ${
                     isActive
-                      ? 'text-[#1d1d1f] font-bold'
-                      : 'text-[#515154] hover:text-[#1d1d1f] font-semibold'
+                      ? 'text-[#1d1d1f]'
+                      : 'text-[#6e6e73] hover:text-[#1d1d1f]'
                   }`}
                 >
                   <span>{item.name}</span>
-
                   {item.isHighlight && (
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
-                  )}
-
-                  {/* THANH CHỈ BÁO GRADIENT DƯỚI ĐÁY */}
-                  {isActive && (
-                    <span className="absolute bottom-0 inset-x-0 h-[2.5px] bg-gradient-to-r from-[#2c65f6] via-[#a844f2] to-[#e44d32] rounded-full shadow-[0_2px_8px_rgba(168,68,242,0.35)]" />
+                    <span className="absolute -top-1 -right-2 w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   )}
                 </Link>
               );
             })}
           </nav>
-        </div>
 
-        {/* NÚT HAMBURGER BÊN PHẢI TRÊN MOBILE */}
-        <button
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden p-2 text-[#1d1d1f] hover:text-[#2c65f6] rounded-xl hover:bg-neutral-100 transition cursor-pointer"
-          aria-label="Mở menu"
-        >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
-        </button>
+          {/* NÚT ĐĂNG KÝ HỌC & HAMBURGER */}
+          <div className="flex items-center gap-3 pr-1">
+            <Link
+              href="https://zalo.me/0934304070"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:inline-flex items-center justify-center px-5 py-2 rounded-full bg-[#1d1d1f] hover:bg-black text-white text-[13px] font-bold transition shadow-sm hover:scale-[1.02]"
+            >
+              Đăng ký học
+            </Link>
+
+            <button
+              type="button"
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 text-[#1d1d1f] hover:text-[#2c65f6] rounded-full hover:bg-neutral-100 transition cursor-pointer"
+              aria-label="Mở menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+
+        </div>
 
       </div>
 
-      {/* =========================================================================
-          DRAWER / MENU XỔ XUỐNG CHO MOBILE
-          (TỰ ĐỘNG KHỚP CHIỀU CAO MÀN HÌNH ĐIỆN THOẠI, CUỘN ĐƯỢC 100%, KHÔNG LO BỊ CHE KHUẤT)
-         ========================================================================= */}
+      {/* MENU MOBILE XỔ XUỐNG */}
       {isOpen && (
-        <div 
-          className="md:hidden fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] bg-white/98 backdrop-blur-2xl border-t border-[#e5e5ea] z-50 flex flex-col justify-between overflow-y-auto px-5 py-6 animate-in fade-in slide-in-from-top-2 duration-200"
-        >
+        <div className="md:hidden fixed inset-x-4 top-20 bg-white/98 backdrop-blur-2xl border border-[#e5e5ea] rounded-3xl z-50 flex flex-col justify-between p-6 shadow-2xl animate-in fade-in slide-in-from-top-3 duration-200 pointer-events-auto">
           <div className="space-y-2">
-            <p className="text-xs font-semibold text-[#86868b] tracking-wider uppercase px-3 mb-3">
+            <p className="text-xs font-semibold text-[#86868b] tracking-wider uppercase px-3 mb-2">
               Danh mục điều hướng
             </p>
             
@@ -142,9 +135,9 @@ export default function Navbar() {
                   scroll={false}
                   prefetch={false}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-[16px] transition-all ${
+                  className={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-[15px] transition-all ${
                     isActive
-                      ? 'bg-neutral-100 text-[#1d1d1f] font-bold border-l-4 border-l-[#a844f2] shadow-sm'
+                      ? 'bg-neutral-100 text-[#1d1d1f] font-bold border-l-4 border-l-[#1d1d1f]'
                       : 'text-[#48484a] hover:bg-[#f5f5f7] font-semibold'
                   }`}
                 >
@@ -154,13 +147,13 @@ export default function Navbar() {
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     )}
                   </div>
-                  <ChevronRight size={18} className={isActive ? 'text-[#1d1d1f]' : 'text-[#86868b]'} />
+                  <ChevronRight size={17} className={isActive ? 'text-[#1d1d1f]' : 'text-[#86868b]'} />
                 </Link>
               );
             })}
           </div>
 
-          <div className="pt-6 pb-2 border-t border-[#e5e5ea] text-center mt-6">
+          <div className="pt-5 border-t border-[#e5e5ea] text-center mt-4">
             <p className="text-xs text-[#86868b] font-medium tracking-wider">
               BIN.STUDY • TIN ĐẦU RA DTU
             </p>

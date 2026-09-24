@@ -494,7 +494,7 @@ export default function TinhGPAPage() {
     >
       
       {/* 1. HEADER CĂN GIỮA STYLE APPLE (HUY HIỆU ĐÃ ĐỔI THÀNH NỀN ĐEN CHỮ TRẮNG) */}
-      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+      <section className="w-full pt-5 pb-6 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
         <div className="space-y-3 text-center max-w-3xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#1d1d1f] text-white text-xs font-semibold rounded-full shadow-sm">

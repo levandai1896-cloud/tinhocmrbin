@@ -95,7 +95,7 @@ export default function TinhDiemTheDucPage() {
     >
       
       {/* 1. TIÊU ĐỀ TRANG (TIÊU ĐỀ ĐÃ ĐỔI VỀ LẠI MÀU ĐEN TEXT-[#1D1D1F]) */}
-      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+      <section className="w-full pt-5 pb-6 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
         <div className="space-y-3 text-center max-w-2xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#ff7a00] text-white text-xs font-semibold rounded-full shadow-[0_2px_8px_rgba(255,122,0,0.3)]">

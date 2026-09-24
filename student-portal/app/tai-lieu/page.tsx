@@ -206,7 +206,7 @@ export default function TaiLieuPage() {
     <div className="min-h-screen bg-[#f5f5f7] text-[#1d1d1f] font-[-apple-system,BlinkMacSystemFont,'SF_Pro_Text','SF_Pro_Display','Segoe_UI',sans-serif] antialiased selection:bg-[#0071e3] selection:text-white pb-24">
       
       {/* 1. TIÊU ĐỀ TRANG CĂN GIỮA THEO STYLE APPLE */}
-      <section className="w-full pt-14 pb-8 px-4 sm:px-6 max-w-4xl mx-auto flex flex-col items-center">
+      <section className="w-full pt-5 pb-6 px-4 sm:px-6 max-w-6xl mx-auto flex flex-col items-center">
         <div className="space-y-3 text-center max-w-2xl">
           <div>
             <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-[#b23b35] text-white text-xs font-semibold rounded-full shadow-sm">
