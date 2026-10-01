@@ -110,7 +110,7 @@ export default function TinhDiemTheDucPage() {
           </h1>
 
           <p className="text-[17px] leading-[25px] font-normal text-[#86868b] max-w-xl mx-auto">
-            Nhập điểm tổng kết của 3 học phần thể dục để kiểm tra điều kiện đạt chuẩn chứng chỉ thể chất. Lưu ý: Điểm trung bình hệ 4.0 phải từ 2.0 mới đạt.
+            Nhập điểm tổng kết của 3 học phần thể dục để kiểm tra điều kiện đạt chuẩn chứng chỉ thể chất. Lưu ý: Điểm trung bình tháng 4 phải từ 2.0 mới đạt.
           </p>
         </div>
       </section>
@@ -217,7 +217,7 @@ export default function TinhDiemTheDucPage() {
               {/* Chi tiết 3 môn */}
               <div className="border border-[#e5e5ea]/80 p-5 bg-[#f5f5f7] rounded-2xl space-y-3">
                 <h3 className="text-[13px] font-bold text-[#1d1d1f] uppercase tracking-wider text-center">
-                  Chi tiết điểm quy đổi sang thang 4.0
+                  Chi tiết quy đổi điểm sang thang 4
                 </h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -253,7 +253,7 @@ export default function TinhDiemTheDucPage() {
               {/* Điểm trung bình cộng & Thẻ trạng thái */}
               <div className="flex flex-col items-center justify-center text-center p-7 bg-[#f5f5f7] border border-[#e5e5ea]/80 rounded-[24px] space-y-3.5">
                 <span className="text-[15px] sm:text-[17px] font-bold text-[#1d1d1f] uppercase tracking-wider block">
-                  Điểm trung bình GDTC thang 4.0
+                  Điểm trung bình GDTC thang 4
                 </span>
                 
                 <span className="text-5xl sm:text-6xl font-extrabold text-[#1d1d1f] tracking-tight leading-none">
