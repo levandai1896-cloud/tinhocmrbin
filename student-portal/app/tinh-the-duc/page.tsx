@@ -110,7 +110,7 @@ export default function TinhDiemTheDucPage() {
           </h1>
 
           <p className="text-[17px] leading-[25px] font-normal text-[#86868b] max-w-xl mx-auto">
-            Nhập điểm tổng kết của 3 học phần thể dục để kiểm tra điều kiện đạt chuẩn chứng chỉ thể chất. Lưu ý: Điểm trung bình tháng 4 phải từ 2.0 mới đạt.
+            Nhập điểm tổng kết của 3 học phần thể dục để kiểm tra điều kiện đạt chuẩn chứng chỉ thể chất. Lưu ý: Điểm trung bình thang 4 phải từ 2.0 mới đạt.
           </p>
         </div>
       </section>
