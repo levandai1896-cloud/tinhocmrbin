@@ -217,7 +217,7 @@ export default function TinhDiemTheDucPage() {
               {/* Chi tiết 3 môn */}
               <div className="border border-[#e5e5ea]/80 p-5 bg-[#f5f5f7] rounded-2xl space-y-3">
                 <h3 className="text-[13px] font-bold text-[#1d1d1f] uppercase tracking-wider text-center">
-                  Chi tiết điểm quy đổi sang hệ 4.0
+                  Chi tiết điểm quy đổi sang thang 4.0
                 </h3>
                 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -253,7 +253,7 @@ export default function TinhDiemTheDucPage() {
               {/* Điểm trung bình cộng & Thẻ trạng thái */}
               <div className="flex flex-col items-center justify-center text-center p-7 bg-[#f5f5f7] border border-[#e5e5ea]/80 rounded-[24px] space-y-3.5">
                 <span className="text-[15px] sm:text-[17px] font-bold text-[#1d1d1f] uppercase tracking-wider block">
-                  Điểm trung bình GDTC hệ 4.0
+                  Điểm trung bình GDTC thang 4.0
                 </span>
                 
                 <span className="text-5xl sm:text-6xl font-extrabold text-[#1d1d1f] tracking-tight leading-none">

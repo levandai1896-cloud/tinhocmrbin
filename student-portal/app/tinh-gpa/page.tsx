@@ -554,8 +554,8 @@ export default function TinhGPAPage() {
                 <div className="hidden sm:grid grid-cols-12 gap-3 text-[11px] font-semibold text-[#86868b] uppercase tracking-wider px-3">
                   <div className="col-span-5">Tên môn học</div>
                   <div className="col-span-2 text-center">Số tín chỉ</div>
-                  <div className="col-span-2 text-center">Điểm (Hệ 10)</div>
-                  <div className="col-span-2 text-center">Hệ 4 (Quy đổi)</div>
+                  <div className="col-span-2 text-center">Điểm (Thang 10)</div>
+                  <div className="col-span-2 text-center">Thang 4 (Quy đổi)</div>
                   <div className="col-span-1 text-center">Xóa</div>
                 </div>
 
@@ -593,7 +593,7 @@ export default function TinhGPAPage() {
                       </div>
 
                       <div className="col-span-2 flex items-center justify-between sm:justify-center">
-                        <span className="sm:hidden text-xs text-[#86868b] font-medium">Điểm hệ 10:</span>
+                        <span className="sm:hidden text-xs text-[#86868b] font-medium">Điểm thang 10:</span>
                         <input
                           type="number"
                           step="0.1"
