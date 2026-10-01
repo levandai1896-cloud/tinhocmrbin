@@ -83,7 +83,7 @@ export default function ChiTietKhoaHoc12Page() {
             <div className="space-y-2">
               <div className="inline-flex items-center gap-2 text-[13px] font-bold text-[#1d1d1f] uppercase tracking-wider">
                 <Calendar size={17} className="text-[#b23b35] shrink-0" />
-                <span>Lịch Trình Đào Tạo</span>
+                <span>LỊCH TRÌNH KHOÁ HỌC</span>
               </div>
               <div className="text-[18px] sm:text-[19px] font-bold text-[#1d1d1f] tracking-tight">
                 15/10/2026 → 30/11/2026
