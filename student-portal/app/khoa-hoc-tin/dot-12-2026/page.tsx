@@ -120,15 +120,15 @@ export default function ChiTietKhoaHoc12Page() {
                 <span>Hình Thức & Địa Điểm</span>
               </div>
               <div className="text-[18px] sm:text-[19px] font-bold text-[#1d1d1f] tracking-tight">
-                Offline kết hợp Online
+                2 lớp Offline và Online
               </div>
             </div>
             <div className="space-y-1.5 text-[14px] leading-relaxed text-[#1d1d1f] pt-3 border-t border-[#e5e5ea]">
               <p className="block">
-                • <strong className="font-semibold text-[#1d1d1f]">Offline:</strong> 291/34 Trần Cao Vân (TT Toàn Thắng)
+                • <strong className="font-semibold text-[#1d1d1f]"> Lớp Offline:</strong> 291/34 Trần Cao Vân (TT Toàn Thắng)
               </p>
               <p className="block">
-                • <strong className="font-semibold text-[#1d1d1f]">Online:</strong> Học tương tác trực tiếp qua Zoom
+                • <strong className="font-semibold text-[#1d1d1f]">Lớp Online:</strong> Học tương tác trực tiếp qua Zoom
               </p>
             </div>
           </div>
